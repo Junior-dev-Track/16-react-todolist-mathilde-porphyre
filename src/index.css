@@ -16,6 +16,11 @@ h1 {
   line-height: 1.1;
 }
 
+h2 {
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -26,9 +31,9 @@ a:hover {
 }
 
 button {
-  border-radius: 8px;
+  border-radius: 5px;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  padding: 7px 12px;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
@@ -36,17 +41,39 @@ button {
   color: #ffffff;
   cursor: pointer;
   transition: border-color 0.25s;
-
 }
 
 button:hover {
-  border-color: #ffffff;
+  background-color: #646cff;
 }
 
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+
+ul {
+  list-style: none;
+}
+
+form {
+  display: flex;
+  align-items: center;
+}
+
+input {
+  border: 1px solid #E6E9ED;
+  background-color: #F5F8FA;
+  padding: 8px 12px;
+  border-radius: 5px;
+  margin-right: 15px;
+}
+
+hr {
+  border: 1px solid #EAEBEE;
+  margin: 0 3rem;
+}
+
 
 
 /*:root {

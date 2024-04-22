@@ -4,7 +4,11 @@ import TodoList from './TodoList';
 import './App.css';
 
 function App() {
-  const [todos, setTodos] = useState(['Learn React', 'Be Awesome!', 'Eat a Cookie']);
+  const [todos, setTodos] = useState([
+    { id: 1, name: 'Learn React', done: false },
+    { id: 2, name: 'Be Awesome!', done: false },
+    { id: 3, name: 'Eat a Cookie', done: false },
+  ]);
   const [newTodo, setNewTodo] = useState('');
 
   const handleNewTodoChange = (event) => {
@@ -14,9 +18,19 @@ function App() {
   const handleNewTodo = (event) => {
     event.preventDefault();
     if (newTodo.trim() !== '') {
-      setTodos([...todos, newTodo]);
+      setTodos([...todos, { id: Date.now(), name: newTodo, done: false }]);
       setNewTodo('');
     }
+  };
+
+  const handleCheck = (id) => {
+  setTodos(todos.map(todo =>
+    todo.id === id ? { ...todo, done: !todo.done } : todo
+  ));
+};
+
+  const handleDelete = (id) => {
+    setTodos(todos.filter(todo => todo.id !== id));
   };
 
   return (
@@ -25,10 +39,11 @@ function App() {
         <h1>My Todo App</h1>
       </header>
       <form onSubmit={handleNewTodo}>
-        <input value={newTodo} onChange={handleNewTodoChange} />
+        <input value={newTodo} onChange={handleNewTodoChange} placeholder="Type a new todo" />
         <button type="submit">Add Todo</button>
       </form>
-      <TodoList todos={todos} />
+      <hr />
+      <TodoList todos={todos} onTodoToggle={handleCheck} onDelete={handleDelete} />
     </div>
   );
 }

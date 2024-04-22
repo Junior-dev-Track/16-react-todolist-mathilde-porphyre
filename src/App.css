@@ -12,7 +12,7 @@
 header {
   background-color: #F5F8FA;
   width: 100%;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #EAEBEE;
   padding: 3rem;
 }
 
@@ -23,4 +23,20 @@ form {
 
 .todo-list {
   margin: 3rem;
+}
+
+.todo-item {
+  margin-left: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.todo-item input {
+  margin-right: 10px;
+}
+
+i {
+  margin-left: 10px;
+  color: rgb(160, 52, 52);
 }
