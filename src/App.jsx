@@ -1,19 +1,25 @@
 // App.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
 import './App.css';
 
 function App() {
-  const [todos, setTodos] = useState([
-    { id: 1, name: 'Learn React', done: false },
-    { id: 2, name: 'Be Awesome!', done: false },
-    { id: 3, name: 'Eat a Cookie', done: false },
-  ]);
+  const [todos, setTodos] = useState(() => {
+    const storedTodos = window.localStorage.getItem('todos');
+    return storedTodos ? JSON.parse(storedTodos) : [];
+  });
 
-  const handleNewTodo = (newTodo) => {
-    setTodos([...todos, { id: Date.now(), name: newTodo, done: false }]);
+  useEffect(() => {
+    const storedTodos = window.localStorage.getItem('todos');
+    if (storedTodos) {
+      setTodos(JSON.parse(storedTodos));
+    }
+  }, []);
+
+  const handleNewTodo = (newTodo, category) => {
+    setTodos([...todos, { id: Date.now(), name: newTodo, done: false, category }]);
   };
 
   const handleCheck = (id) => {
@@ -26,12 +32,27 @@ function App() {
     setTodos(todos.filter(todo => todo.id !== id));
   };
 
+  useEffect(() => {
+    window.localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
+
+  const handleDeleteCompleted = () => {
+    setTodos(todos.filter(todo => !todo.done));
+  };
+
   return (
     <div className='container'>
       <Header />
       <TodoForm handleNewTodo={handleNewTodo} />
       <hr />
-      <TodoList todos={todos} onTodoToggle={handleCheck} onDelete={handleDelete} />
+      <TodoList 
+        todos={todos} 
+        onTodoToggle={handleCheck} 
+        onDelete={handleDelete} 
+        remaining={todos.filter(todo => !todo.done).length}
+        handleDeleteCompleted={handleDeleteCompleted}
+        completed={todos.filter(todo => todo.done).length}
+      />
     </div>
   );
 }

@@ -24,7 +24,6 @@ h2 {
   font-weight: 500;
   text-transform: uppercase;
   color: #3B3B71;
-  margin-bottom: 20px;
 }
 
 h3 {
@@ -54,7 +53,7 @@ button {
   color: rgba(250,249,254,1);
   cursor: pointer;
   transition: border-color 0.25s;
-  width: 24%;
+  width: 30%;
 }
 
 button:hover {

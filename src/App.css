@@ -60,13 +60,22 @@ input {
   background-color: #F5F8FA;
   padding: 8px 12px;
   border-radius: 5px;
-  margin-right: 15px;
+  margin-right: 5px;
   font-family: inherit;
   width: 100%;
 }
 
 input:focus {
   outline: none;
+}
+
+select {
+  border: 1px solid #E6E9ED;
+  background-color: #F5F8FA;
+  padding: 8px 12px;
+  border-radius: 5px;
+  margin-right: 15px;
+  font-family: inherit;
 }
 
 
@@ -100,6 +109,34 @@ ul {
 
 .todo-item input {
   margin-right: 10px;
+}
+
+.todo-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+
+
+/* CATEGORY */
+
+.category-label {
+  font-size: 12px;
+  padding: 1px 6px;
+  border-radius: 3px;
+  margin-left: 10px;
+}
+
+.category-label.private {
+  background-color: rgb(255, 226, 221);
+  color: rgb(93, 23, 21);
+}
+
+.category-label.work {
+  background: rgb(211, 229, 239);
+  color: rgb(24, 51, 71);
 }
 
 

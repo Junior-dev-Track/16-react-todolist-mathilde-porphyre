@@ -1,10 +1,13 @@
 // TodoList.jsx
 import React from 'react';
 
-function TodoList({ todos, onTodoToggle, onDelete, onEdit }) {
+function TodoList({ todos, onTodoToggle, onDelete, remaining, handleDeleteCompleted, completed }) {
   return (
     <div className="todo-list">
-      <h2>To do</h2>
+      <div className="todo-list-header">
+        <h2>To do <span>({remaining})</span></h2>
+        {completed >= 2 && <button onClick={handleDeleteCompleted}>Delete All</button>}
+      </div>
       <ul>
         {todos.map((todo) => (
           <li className="todo-item" key={todo.id}>
@@ -17,13 +20,15 @@ function TodoList({ todos, onTodoToggle, onDelete, onEdit }) {
                 checked={todo.done}
                 onChange={() => onTodoToggle(todo.id)}
               /> 
-              {todo.name}
+              {todo.name} <span className={`category-label ${todo.category}`}>{todo.category}</span>
             </div>
-            <i 
-              className="fas fa-trash" 
-              onClick={() => { if (todo.done) onDelete(todo.id) }} 
-              //style={{ cursor: todo.done ? 'pointer' : 'not-allowed' }}
-            />
+            {todo.done && (
+              <i 
+                className="fas fa-trash" 
+                onClick={() => { if (todo.done) onDelete(todo.id) }} 
+                //style={{ cursor: todo.done ? 'pointer' : 'not-allowed' }}
+              />
+            )}
           </li>
         ))}
       </ul>
