@@ -26,6 +26,11 @@ h2 {
   color: #3B3B71;
 }
 
+h2 span {
+  opacity: 0.6;
+  font-size: 14px;
+}
+
 h3 {
   font-size: 2em;
   margin-right: 20px;

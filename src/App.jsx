@@ -40,6 +40,13 @@ function App() {
     setTodos(todos.filter(todo => !todo.done));
   };
 
+  const [editing, setEditing] = useState(null);
+
+  const handleEdit = (id, name) => {
+    setTodos(todos.map(todo => todo.id === id ? { ...todo, name } : todo));
+    setEditing(null);
+  };
+
   return (
     <div className='container'>
       <Header />
@@ -52,6 +59,9 @@ function App() {
         remaining={todos.filter(todo => !todo.done).length}
         handleDeleteCompleted={handleDeleteCompleted}
         completed={todos.filter(todo => todo.done).length}
+        onEdit={handleEdit}
+        editing={editing}
+        setEditing={setEditing}
       />
     </div>
   );
